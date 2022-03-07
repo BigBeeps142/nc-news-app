@@ -2,23 +2,27 @@ import { useEffect, useState } from "react";
 import { getArticles, getArticlesByTopic } from "../../api";
 import Articlecard from "./ArticleCard";
 
-const Articles = ({ topic }) => {
-  const [articles, setArticles] = useState([]);
+const Articles = ({
+  topic,
+  articles,
+  setArticles,
+  pageInfo: { page, limit },
+}) => {
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setIsLoading(true);
     if (topic) {
-      getArticlesByTopic(topic).then((data) => {
+      getArticlesByTopic(topic, page, limit).then((data) => {
         setIsLoading(false);
         setArticles(data.articles);
       });
     } else {
-      getArticles().then((data) => {
+      getArticles(page, limit).then((data) => {
         setIsLoading(false);
         setArticles(data.articles);
       });
     }
-  }, [topic]);
+  }, [topic, page, limit]);
 
   return isLoading ? (
     <h2>Loading...</h2>

@@ -4,21 +4,22 @@ const newsApi = axios.create({
   baseURL: "https://beeps-nc-news.herokuapp.com/api",
 });
 
-export const getArticles = () => {
-  return newsApi.get("/articles").then((res) => {
+export const getArticles = (page, limit) => {
+  return newsApi.get(`/articles?p=${page}&limit=${limit}`).then((res) => {
     return res.data;
   });
 };
 
-export const getArticlesByTopic = (topic) => {
-  return newsApi.get(`/articles?topic=${topic}`).then((res) => {
-    return res.data;
-  });
+export const getArticlesByTopic = (topic, page, limit) => {
+  return newsApi
+    .get(`/articles?topic=${topic}&p=${page}&limit=${limit}`)
+    .then((res) => {
+      return res.data;
+    });
 };
 
 export const getTopics = () => {
   return newsApi.get("/topics").then((res) => {
-    console.log(res.data);
     return res.data;
   });
 };
