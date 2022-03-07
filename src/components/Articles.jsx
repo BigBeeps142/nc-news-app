@@ -12,7 +12,7 @@ const Articles = ({ topic }) => {
   }, [topic]);
 
   return (
-    <ul>
+    <ul className="ArticleList">
       {articles.map((article) => {
         return <Articlecard key={article.title} article={article} />;
       })}

@@ -1,3 +1,26 @@
 .App {
   text-align: center;
 }
+body {
+  background-color: rgb(214, 214, 214);
+}
+
+.ArticleList {
+  padding-left: 5px;
+  padding-right: 5px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 4px;
+  list-style: none;
+}
+.ArticleCard {
+  background-color: rgb(196, 196, 196);
+  display: block;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+.ArticleCard:hover {
+  border-color: goldenrod;
+}
