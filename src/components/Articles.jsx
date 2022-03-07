@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getArticles } from "../api";
+import { getArticles, getArticlesByTopic } from "../api";
 import Articlecard from "./ArticleCard";
 
 const Articles = ({ topic }) => {
@@ -7,10 +7,17 @@ const Articles = ({ topic }) => {
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     setIsLoading(true);
-    getArticles().then((data) => {
-      setIsLoading(false);
-      setArticles(data.articles);
-    });
+    if (topic) {
+      getArticlesByTopic(topic).then((data) => {
+        setIsLoading(false);
+        setArticles(data.articles);
+      });
+    } else {
+      getArticles().then((data) => {
+        setIsLoading(false);
+        setArticles(data.articles);
+      });
+    }
   }, [topic]);
 
   return isLoading ? (
