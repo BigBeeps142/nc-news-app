@@ -2,7 +2,8 @@
   text-align: center;
 }
 body {
-  background-color: rgb(214, 214, 214);
+  background-color: #cbb8a9;
+  /* background-color: #bcf4de; */
 }
 
 .ArticleList {
@@ -14,7 +15,9 @@ body {
   list-style: none;
 }
 .ArticleCard {
-  background-color: rgb(196, 196, 196);
+  /* background-color: #2e86ab; */
+  color: #6f686d;
+  background-color: #d8d0c1;
   display: block;
   border-style: solid;
   border-width: 2px;
