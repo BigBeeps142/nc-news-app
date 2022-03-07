@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getArticles, getArticlesByTopic } from "../../api";
+import { getArticles } from "../../api";
 import Articlecard from "./ArticleCard";
 
 const Articles = ({ topic, setPageInfo, pageInfo: { page, limit, count } }) => {

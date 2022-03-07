@@ -1,14 +1,10 @@
-const Pageinput = ({ pageInfo, setPageInfo }) => {
+const Pageinput = ({ pageInfo, changePage }) => {
   return (
     <div>
       <button
         disabled={pageInfo.page === 1}
         onClick={() => {
-          setPageInfo((currentInfo) => {
-            const newInfo = { ...currentInfo };
-            newInfo.page--;
-            return newInfo;
-          });
+          changePage(-1);
         }}
       >
         {"<-"}
@@ -17,11 +13,7 @@ const Pageinput = ({ pageInfo, setPageInfo }) => {
       <button
         disabled={pageInfo.limit * pageInfo.page > pageInfo.count}
         onClick={() => {
-          setPageInfo((currentInfo) => {
-            const newInfo = { ...currentInfo };
-            newInfo.page++;
-            return newInfo;
-          });
+          changePage(1);
         }}
       >
         {"->"}
