@@ -5,23 +5,14 @@ import Pageinput from "./PageInput";
 import Topicbar from "./TopicBar";
 
 const Articlespage = () => {
-  const [pageInfo, setPageInfo] = useState({ page: 1, limit: 10 });
-  const [articles, setArticles] = useState([]);
+  const [pageInfo, setPageInfo] = useState({ page: 1, limit: 10, count: 0 });
+
   const { topic } = useParams();
   return (
     <div>
       <Topicbar />
-      <Pageinput
-        pageInfo={pageInfo}
-        setPageInfo={setPageInfo}
-        articles={articles}
-      />
-      <Articles
-        topic={topic}
-        pageInfo={pageInfo}
-        setArticles={setArticles}
-        articles={articles}
-      />
+      <Pageinput pageInfo={pageInfo} setPageInfo={setPageInfo} />
+      <Articles topic={topic} pageInfo={pageInfo} setPageInfo={setPageInfo} />
     </div>
   );
 };

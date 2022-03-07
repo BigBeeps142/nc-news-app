@@ -1,4 +1,4 @@
-const Pageinput = ({ pageInfo, setPageInfo, articles }) => {
+const Pageinput = ({ pageInfo, setPageInfo }) => {
   return (
     <div>
       <button
@@ -15,7 +15,7 @@ const Pageinput = ({ pageInfo, setPageInfo, articles }) => {
       </button>
       <p>{pageInfo.page}</p>
       <button
-        disabled={articles.length < pageInfo.limit}
+        disabled={pageInfo.limit * pageInfo.page > pageInfo.count}
         onClick={() => {
           setPageInfo((currentInfo) => {
             const newInfo = { ...currentInfo };
