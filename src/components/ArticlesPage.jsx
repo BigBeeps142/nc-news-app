@@ -1,5 +1,13 @@
+import { useParams } from "react-router-dom";
+import Articles from "./Articles";
+
 const Articlespage = () => {
-  return <div>Articles</div>;
+  const { topic } = useParams();
+  return (
+    <div>
+      <Articles topic={topic} />
+    </div>
+  );
 };
 
 export default Articlespage;

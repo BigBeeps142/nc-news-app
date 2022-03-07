@@ -12,6 +12,7 @@ function App() {
         <Pagenav />
         <Routes>
           <Route path="/articles" element={<Articlespage />} />
+          <Route path="/articles/:topic" element={<Articlespage />} />
         </Routes>
       </div>
     </BrowserRouter>
