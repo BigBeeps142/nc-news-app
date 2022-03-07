@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
-import { getArticles } from "../api";
+import { getArticles } from "../../api";
 import Articlecard from "./ArticleCard";
 
-const Articles = ({ topic }) => {
-  const [articles, setArticles] = useState([]);
+const Articles = ({ topic, setPageInfo, pageInfo: { page, limit, count } }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [articles, setArticles] = useState([]);
   useEffect(() => {
     setIsLoading(true);
-    getArticles().then((data) => {
+
+    getArticles(topic, page, limit).then((data) => {
       setIsLoading(false);
+      setPageInfo((currentInfo) => {
+        const newInfo = { ...currentInfo };
+        newInfo.count = data.total_count;
+        return newInfo;
+      });
       setArticles(data.articles);
     });
-  }, [topic]);
+  }, [topic, page, limit, count]);
 
   return isLoading ? (
     <h2>Loading...</h2>
