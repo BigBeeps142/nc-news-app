@@ -7,27 +7,16 @@ const Articles = ({ topic, setPageInfo, pageInfo: { page, limit, count } }) => {
   const [articles, setArticles] = useState([]);
   useEffect(() => {
     setIsLoading(true);
-    if (topic) {
-      getArticlesByTopic(topic, page, limit).then((data) => {
-        setIsLoading(false);
-        setPageInfo((currentInfo) => {
-          const newInfo = { ...currentInfo };
-          newInfo.count = data.total_count;
-          return newInfo;
-        });
-        setArticles(data.articles);
+
+    getArticles(topic, page, limit).then((data) => {
+      setIsLoading(false);
+      setPageInfo((currentInfo) => {
+        const newInfo = { ...currentInfo };
+        newInfo.count = data.total_count;
+        return newInfo;
       });
-    } else {
-      getArticles(page, limit).then((data) => {
-        setIsLoading(false);
-        setPageInfo((currentInfo) => {
-          const newInfo = { ...currentInfo };
-          newInfo.count = data.total_count;
-          return newInfo;
-        });
-        setArticles(data.articles);
-      });
-    }
+      setArticles(data.articles);
+    });
   }, [topic, page, limit, count]);
 
   return isLoading ? (
