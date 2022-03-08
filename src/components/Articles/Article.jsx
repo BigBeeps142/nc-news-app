@@ -17,12 +17,28 @@ const Article = () => {
   }, [article_id]);
 
   const changeVotes = (inc) => {
-    patchArticle(article_id, inc).then(({ article }) => {
-      setArticle(article);
+    setArticle((currentArticle) => {
+      const newArticle = { ...currentArticle };
+      newArticle.votes += inc;
+      return newArticle;
     });
     setVoteInc((currentInc) => {
       return currentInc + inc;
     });
+    patchArticle(article_id, inc)
+      .then(({ article }) => {
+        setArticle(article);
+      })
+      .catch(() => {
+        setArticle((currentArticle) => {
+          const newArticle = { ...currentArticle };
+          newArticle.votes -= inc;
+          return newArticle;
+        });
+        setVoteInc((currentInc) => {
+          return currentInc - inc;
+        });
+      });
   };
 
   return isLoading ? (
