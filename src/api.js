@@ -29,3 +29,9 @@ export const getArticle = (article_id) => {
     return res.data;
   });
 };
+
+export const patchArticle = (article_id, inc_votes) => {
+  return newsApi.patch(`/articles/${article_id}`, { inc_votes }).then((res) => {
+    return res.data;
+  });
+};

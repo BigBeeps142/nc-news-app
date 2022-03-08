@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getArticle } from "../../api";
+import { getArticle, patchArticle } from "../../api";
 
 const Article = () => {
   const [article, setArticle] = useState({});
+  const [voteInc, setVoteInc] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const { article_id } = useParams();
 
@@ -14,6 +15,16 @@ const Article = () => {
       setArticle(article);
     });
   }, [article_id]);
+
+  const changeVotes = (inc) => {
+    patchArticle(article_id, inc).then(({ article }) => {
+      setArticle(article);
+    });
+    setVoteInc((currentInc) => {
+      return currentInc + inc;
+    });
+  };
+
   return isLoading ? (
     <h2>Loading...</h2>
   ) : (
@@ -25,6 +36,23 @@ const Article = () => {
         {new Date(article.created_at).toUTCString()}
       </p>
       <p className="Article-Body">{article.body}</p>
+      <button
+        disabled={voteInc === 1}
+        onClick={() => {
+          changeVotes(1);
+        }}
+      >
+        UP
+      </button>
+      <p>{article.votes}</p>
+      <button
+        disabled={voteInc === -1}
+        onClick={() => {
+          changeVotes(-1);
+        }}
+      >
+        DOWN
+      </button>
     </section>
   );
 };
