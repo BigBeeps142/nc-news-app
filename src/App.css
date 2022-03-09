@@ -60,3 +60,9 @@ body {
 .Comment-Date {
   font-size: smaller;
 }
+
+.Comment-Avatar {
+  width: 50px;
+  border-radius: 50%;
+  height: 50px;
+}
