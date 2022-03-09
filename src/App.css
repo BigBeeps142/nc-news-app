@@ -3,6 +3,7 @@
 }
 body {
   background-color: #cbb8a9;
+  color: #394648;
 }
 
 .ArticleList {
@@ -32,6 +33,36 @@ body {
   margin: 5px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 10px;
   border-style: solid;
   border-radius: 10px;
+}
+
+.CommentList {
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+.Comment {
+  margin: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-style: solid;
+  border-radius: 10px;
+  background-color: #b3b492;
+  text-align: left;
+}
+
+.Comment-Author {
+  font-size: small;
+}
+
+.Comment-Date {
+  font-size: smaller;
+}
+
+.Comment-Avatar {
+  width: 50px;
+  border-radius: 50%;
+  height: 50px;
 }
