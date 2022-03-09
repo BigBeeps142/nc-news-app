@@ -12,7 +12,7 @@ const Commentlist = ({ article_id }) => {
   }, [article_id]);
   return (
     <Commentwrapper>
-      <ul>
+      <ul className="CommentList">
         {comments.map((comment) => {
           return <Comment key={comment.comment_id} comment={comment} />;
         })}

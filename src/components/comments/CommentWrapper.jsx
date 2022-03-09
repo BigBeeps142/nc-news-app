@@ -10,6 +10,11 @@ const Commentwrapper = ({ children }) => {
         {isOpen ? "Collapse comments" : "Expand comments"}
       </button>
       {isOpen && children}
+      {isOpen && (
+        <button onClick={toggleOpen}>
+          {isOpen ? "Collapse comments" : "Expand comments"}
+        </button>
+      )}
     </div>
   );
 };
