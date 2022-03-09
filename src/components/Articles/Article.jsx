@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticle, patchArticle } from "../../api";
+import Commentlist from "../comments/CommentList";
 
 const Article = () => {
   const [article, setArticle] = useState({});
@@ -69,6 +70,7 @@ const Article = () => {
       >
         DOWN
       </button>
+      <Commentlist article_id={article_id} />
     </section>
   );
 };
