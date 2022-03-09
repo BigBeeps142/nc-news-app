@@ -36,10 +36,14 @@ export const patchArticle = (article_id, inc_votes) => {
   });
 };
 
-export const getCommentsByArticle = (article_id) => {
-  return newsApi.get(`/articles/${article_id}/comments`).then((res) => {
-    return res.data;
-  });
+export const getCommentsByArticle = (article_id, page, limit) => {
+  return newsApi
+    .get(`/articles/${article_id}/comments`, {
+      params: { p: page, limit: limit },
+    })
+    .then((res) => {
+      return res.data;
+    });
 };
 
 export const getUser = (username) => {
