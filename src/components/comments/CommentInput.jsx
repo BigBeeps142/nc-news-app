@@ -14,7 +14,7 @@ const Commentinput = ({ article_id, setComments }) => {
           ({ comment }) => {
             setComments((currentComments) => {
               const newComments = [...currentComments];
-              newComments.push(comment);
+              newComments.unshift(comment);
               return newComments;
             });
           }
