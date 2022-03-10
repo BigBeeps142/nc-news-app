@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCommentsByArticle } from "../../api";
 import Comment from "./Comment";
+import Commentinput from "./CommentInput";
 import Commentwrapper from "./CommentWrapper";
 
 const Commentlist = ({ article_id }) => {
@@ -29,6 +30,7 @@ const Commentlist = ({ article_id }) => {
   return (
     <>
       <p>{pageInfo.count} comments</p>
+      <Commentinput article_id={article_id} setComments={setComments} />
       <Commentwrapper>
         <button
           disabled={pageInfo.page === 1}
