@@ -30,6 +30,7 @@ const Commentlist = ({ article_id }) => {
   return (
     <>
       <p>{pageInfo.count} comments</p>
+      <Commentinput article_id={article_id} setComments={setComments} />
       <Commentwrapper>
         <button
           disabled={pageInfo.page === 1}
@@ -53,7 +54,6 @@ const Commentlist = ({ article_id }) => {
             return <Comment key={comment.comment_id} comment={comment} />;
           })}
         </ul>
-        <Commentinput article_id={article_id} />
       </Commentwrapper>
     </>
   );

@@ -2,13 +2,23 @@ import React, { useContext, useState } from "react";
 import { postComment } from "../../api";
 import { UserContext } from "../../contexts/UserContext";
 
-const Commentinput = ({ article_id }) => {
+const Commentinput = ({ article_id, setComments }) => {
   const { user } = useContext(UserContext);
   const [newComment, setNewComment] = useState("");
   return (
     <form
-      onSubmit={() => {
-        postComment(article_id, user.username, newComment);
+      onSubmit={(e) => {
+        e.preventDefault();
+        setNewComment("");
+        postComment(article_id, user.username, newComment).then(
+          ({ comment }) => {
+            setComments((currentComments) => {
+              const newComments = [...currentComments];
+              newComments.push(comment);
+              return newComments;
+            });
+          }
+        );
       }}
     >
       <label htmlFor="commentInput"> New Comment</label>
@@ -20,7 +30,7 @@ const Commentinput = ({ article_id }) => {
           setNewComment(e.target.value);
         }}
       />
-      <button>Post</button>
+      <button disabled={newComment === ""}>Post</button>
     </form>
   );
 };
