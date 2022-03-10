@@ -8,7 +8,12 @@ import Pagenav from "./components/PageNav";
 import { UserContext } from "./contexts/UserContext";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({
+    username: "tickle122",
+    name: "Tom Tickle",
+    avatar_url:
+      "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
+  });
   return (
     <BrowserRouter>
       <UserContext.Provider value={{ user, setUser }}>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCommentsByArticle } from "../../api";
 import Comment from "./Comment";
+import Commentinput from "./CommentInput";
 import Commentwrapper from "./CommentWrapper";
 
 const Commentlist = ({ article_id }) => {
@@ -52,6 +53,7 @@ const Commentlist = ({ article_id }) => {
             return <Comment key={comment.comment_id} comment={comment} />;
           })}
         </ul>
+        <Commentinput article_id={article_id} />
       </Commentwrapper>
     </>
   );
