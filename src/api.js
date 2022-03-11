@@ -4,13 +4,17 @@ const newsApi = axios.create({
   baseURL: "https://beeps-nc-news.herokuapp.com/api",
 });
 
-export const getArticles = (topic, page, limit) => {
+export const getArticles = (topic, page, limit, sort, order) => {
+  console.log(sort);
+  console.log(order);
   return newsApi
     .get(`/articles`, {
       params: {
         p: page,
         limit: limit,
         topic: topic,
+        sort_by: sort,
+        order: order,
       },
     })
     .then((res) => {
