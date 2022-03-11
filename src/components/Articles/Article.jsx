@@ -2,19 +2,25 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticle, patchArticle } from "../../api";
 import Commentlist from "../comments/CommentList";
+import Errorpage from "../ErrorPage";
 
 const Article = () => {
   const [article, setArticle] = useState({});
   const [voteInc, setVoteInc] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { article_id } = useParams();
 
   useEffect(() => {
     setIsLoading(true);
-    getArticle(article_id).then(({ article }) => {
-      setIsLoading(false);
-      setArticle(article);
-    });
+    getArticle(article_id)
+      .then(({ article }) => {
+        setIsLoading(false);
+        setArticle(article);
+      })
+      .catch((err) => {
+        setError({ msg: err.response.data.msg, status: err.response.status });
+      });
   }, [article_id]);
 
   const changeVotes = (inc) => {
@@ -41,6 +47,9 @@ const Article = () => {
         });
       });
   };
+
+  console.log(error);
+  if (error) return <Errorpage component={"Article"} error={error} />;
 
   return isLoading ? (
     <h2>Loading...</h2>

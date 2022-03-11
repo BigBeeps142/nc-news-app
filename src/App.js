@@ -3,8 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Article from "./components/Articles/Article";
 import Articlespage from "./components/Articles/ArticlesPage";
+import Topicbar from "./components/Articles/TopicBar";
+import Errorpage from "./components/ErrorPage";
 import Header from "./components/Header";
-import Pagenav from "./components/PageNav";
+
 import { UserContext } from "./contexts/UserContext";
 
 function App() {
@@ -19,11 +21,17 @@ function App() {
       <UserContext.Provider value={{ user, setUser }}>
         <div className="App">
           <Header />
-          <Pagenav />
+          <Topicbar />
           <Routes>
             <Route path="/articles" element={<Articlespage />} />
             <Route path="/articles/:topic" element={<Articlespage />} />
             <Route path="/articles/article/:article_id" element={<Article />} />
+            <Route
+              path="*"
+              element={
+                <Errorpage error={{ msg: "Page not found", status: 404 }} />
+              }
+            />
           </Routes>
         </div>
       </UserContext.Provider>
