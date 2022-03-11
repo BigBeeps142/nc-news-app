@@ -33,7 +33,6 @@ const Articlespage = () => {
 
   return (
     <div>
-      <Topicbar />
       <label htmlFor="sort">Sort:</label>
       <select
         name="sort"
