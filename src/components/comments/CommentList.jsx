@@ -27,6 +27,15 @@ const Commentlist = ({ article_id }) => {
       return newInfo;
     });
   };
+
+  const removeComment = (comment_id) => {
+    setComments((currentComments) => {
+      const newComments = [...currentComments];
+      return newComments.filter((comment) => {
+        return comment.comment_id !== comment_id;
+      });
+    });
+  };
   return (
     <>
       <p>{pageInfo.count} comments</p>
@@ -51,7 +60,13 @@ const Commentlist = ({ article_id }) => {
         </button>
         <ul className="CommentList">
           {comments.map((comment) => {
-            return <Comment key={comment.comment_id} comment={comment} />;
+            return (
+              <Comment
+                key={comment.comment_id}
+                comment={comment}
+                removeComment={removeComment}
+              />
+            );
           })}
         </ul>
       </Commentwrapper>
